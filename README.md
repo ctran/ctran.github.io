@@ -19,12 +19,16 @@ mise run preview
 This runs the `preview` task defined in `mise.toml`, which is equivalent to:
 
 ```bash
-docker run --rm --name jekyll-preview -p 4000:4000 -v "$PWD":/srv/jekyll jekyll/jekyll \
-  sh -c "gem install jekyll-remote-theme jekyll-include-cache --no-document && \
+docker run --rm --name jekyll-preview -p 4000:4000 \
+  -v "$PWD":/srv/jekyll -v jekyll-gems:/usr/local/bundle jekyll/jekyll \
+  sh -c "if ! gem list -i '^jekyll-remote-theme$' >/dev/null || \
+            ! gem list -i '^jekyll-include-cache$' >/dev/null; then \
+            gem install jekyll-remote-theme jekyll-include-cache --no-document; \
+         fi && \
          jekyll serve --host 0.0.0.0 --destination /tmp/_site"
 ```
 
-Wait for `Server running...` (the first run installs gems and fetches the theme from GitHub, so it takes a minute), then open http://localhost:4000. The site rebuilds when files change. Stop it with `Ctrl-C`, or `docker rm -f jekyll-preview` if it runs detached (`-d`).
+Wait for `Server running...` (the first run installs gems into the persistent `jekyll-gems` volume and fetches the theme from GitHub, so it takes a minute), then open http://localhost:4000. Later runs reuse the installed gems. The site rebuilds when files change. Stop it with `Ctrl-C`, or `docker rm -f jekyll-preview` if it runs detached (`-d`).
 
 `--host 0.0.0.0` is required, otherwise the server is unreachable from outside the container. `--destination /tmp/_site` keeps build output out of the repo.
 
