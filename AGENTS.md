@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Current state
 
-This is a personal site (`ctran.github.io`, a GitHub Pages user site) built as plain static files: `index.html` and `style.css`. There is no build step, package manager, tests, or CI. Preview by opening `index.html` in a browser, or run `python3 -m http.server` in the repo root.
+This is a personal site (`ctran.github.io`, a GitHub Pages user site) built with Jekyll using the `minima` theme, which GitHub Pages builds automatically. Content lives in `index.md`; site title, description, and social links are in `_config.yml`. There are no tests or CI.
 
-`style.css` uses CSS variables on `:root` with a `prefers-color-scheme: dark` override, so new colors should be added as tokens there.
+To preview locally you need Ruby and Jekyll (not installed by default): `bundle exec jekyll serve` or `jekyll serve`. Otherwise push and check https://ctran.github.io.
 
 ## Notes
 
