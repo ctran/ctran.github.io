@@ -4,3 +4,7 @@ theme: minima
 
 github_username: ctran
 twitter_username: ctran
+
+exclude:
+  - AGENTS.md
+  - README.md
