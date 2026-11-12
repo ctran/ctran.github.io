@@ -1,9 +1,24 @@
 title: Cuong Tran
 description: Software engineer at ServiceNow in San Diego, CA.
-theme: minima
+
+remote_theme: mmistakes/minimal-mistakes@4.26.2
+minimal_mistakes_skin: default
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
 
 github_username: ctran
 twitter_username: ctran
+
+author:
+  name: Cuong Tran
+  bio: Software engineer at ServiceNow in San Diego, CA.
+  location: San Diego, CA
+  links:
+    - label: GitHub
+      icon: fab fa-fw fa-github
+      url: https://github.com/ctran
 
 exclude:
   - AGENTS.md
