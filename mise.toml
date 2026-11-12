@@ -4,6 +4,7 @@
 [tasks.preview]
 description = "Preview the site at http://localhost:4000 using Docker"
 run = """
+docker rm -f jekyll-preview >/dev/null 2>&1 || true
 docker run --rm --name jekyll-preview -p 4000:4000 \
   -v "$PWD":/srv/jekyll -v jekyll-gems:/usr/local/bundle jekyll/jekyll \
   sh -c "if ! gem list -i '^jekyll-remote-theme$' >/dev/null || \
